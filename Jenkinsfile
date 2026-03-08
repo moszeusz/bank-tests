@@ -4,6 +4,9 @@ pipeline {
       image 'mcr.microsoft.com/playwright:v1.58.2-noble'
     } 
   }
+  triggers {
+        pollSCM '* * * * *'
+  }
   stages {
     stage('install playwright') {
       steps {
