@@ -8,11 +8,13 @@ test.describe('User login to Demobank', () => {
     await page.goto('https://demo-bank.vercel.app/');
 
     await loginPage.loginInput.fill('testerLO');
-    await loginPage.passwordInput.fill('10987654')
+    await loginPage.passwordInput.fill('10987654');
     await loginPage.loginButton.click();
     // await page.getByTestId('user-name').click();
 
     await expect(page.getByTestId('user-name')).toHaveText('Jan Demobankowy');
+
+    await page.context().storageState({ path: 'auth.json' });
   });
 
   test('unsuccessful login with too short username', async ({ page }) => {
